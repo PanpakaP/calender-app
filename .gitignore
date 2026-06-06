@@ -1,0 +1,20 @@
+# Node.jsのパッケージ
+node_modules/
+
+# ログファイル
+*.log
+
+# 環境変数
+.env
+
+# パッケージマネージャーのロックファイル
+yarn.lock
+
+# OSが自動生成する不要な隠しファイルらしい、一応
+.DS_Store
+
+# 定義まとめるファイル
+teigi
+
+# パスワード管理
+users.htpasswd

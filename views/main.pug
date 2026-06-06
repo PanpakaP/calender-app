@@ -1,0 +1,92 @@
+doctype html
+html(lang="ja")
+  head
+    meta(charset="UTF-8")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" integrity="sha256-fx038NkLY4U1TCrBDiu5FWPEa9eiZu01EiLryshJbCo=" crossorigin="anonymous")
+    link(rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css")
+    link(rel="stylesheet" href="style.css")
+    title メインページ
+  body
+    // ナビゲーションバー
+    nav.navbar.fixed-top.theme-navbar
+      div.container-fluid.position-relative
+        // 左側のユーザー名表示
+        div.d-flex.align-items-center
+          i.bi-person-circle.me-1.theme-nav-title
+          span.theme-nav-title.small #{user}
+
+        // 中央のタイトル
+        h1.navbar-brand.mx-auto.theme-nav-title 日めくりおみくじ
+          i.bi-calendar-check.ms-2
+
+        // 右側の設定用モーダルを開くボタン
+        button.btn.theme-icon-btn(type="button" data-bs-toggle="modal" data-bs-target="#settingsModal")
+          i.bi-gear-fill
+
+    // メイン画面
+    div.container.d-flex.flex-column.justify-content-center.align-items-center.vh-100
+      div.card.text-center.shadow-sm.p-4(style="max-width: 400px; width: 100%; border-radius: 15px;")
+        div.card-body
+          h2.card-title.mb-4 #{today}
+          p.card-text 今日のガチャ結果
+          h1.display-4.fw-bold.theme-accent-text.my-3 #{fortune}
+
+          // 履歴表示エリアを追加
+          hr.my-4
+          h6.theme-sub-text 最近の履歴
+          if history.length > 0
+            ul.list-group.list-group-flush.text-start
+              each log in history
+                li.list-group-item.bg-transparent.theme-sub-text.d-flex.justify-content-between.align-items-center
+                  span #{log.date}
+                  span.fw-bold.theme-accent-text #{log.result}
+          else
+            p.theme-sub-text.small 履歴はまだありません。
+
+    // 設定モーダル
+    div.modal.fade#settingsModal(tabindex="-1" aria-labelledby="settingsModalLabel" aria-hidden="true")
+      div.modal-dialog.modal-dialog-centered
+        div.modal-content
+          div.modal-header
+            h5.modal-title#settingsModalLabel 設定
+            button.btn-close(type="button" data-bs-dismiss="modal" aria-label="Close")
+          div.modal-body
+            // テーマ切り替えセクション
+            h6.mb-3 カラーテーマの切り替え
+            div.d-grid.gap-2.col-10.mx-auto
+              button.btn.theme-btn(type="button" onclick="applyTheme('light')")
+                i.bi-sun.me-2
+                | ライト
+              button.btn.theme-btn(type="button" onclick="applyTheme('dark')")
+                i.bi-moon-stars.me-2
+                | ダーク
+              button.btn.theme-btn(type="button" onclick="applyTheme('spring')")
+                i.bi-flower1.me-2
+                | スプリング
+              button.btn.theme-btn(type="button" onclick="applyTheme('summer')")
+                i.bi-water.me-2
+                | サマー
+              button.btn.theme-btn(type="button" onclick="applyTheme('autumn')")
+                i.bi-tree-fill.me-2
+                | オータム
+              button.btn.theme-btn(type="button" onclick="applyTheme('winter')")
+                i.bi-snow.me-2
+                | ウィンター
+
+            hr.my-4
+            
+            // アカウント連携セクション
+            h6.mb-3 アカウント連携 （実装予定）
+            p.theme-sub-text.small Googleログイン（実装予定）
+
+            hr.my-4
+
+            // ログアウトボタンを追加
+            div.d-grid
+              a.btn.btn.theme-btn(href="/logout")
+                i.bi-box-arrow-right.me-2
+                | ログアウト
+
+    // スクリプトの読み込み
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha256-qlPVgvl+tZTCpcxYJFdHB/m6mDe84wRr+l81VoYPTgQ=" crossorigin="anonymous")
+    script(src="/calendar.js")

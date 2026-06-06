@@ -1,0 +1,19 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// データベースの接続設定（PostgreSQLを使用し、.envファイルからURLを読み込む）
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ガチャの履歴を保存するテーブル（モデル）の定義
+model GachaLog {
+  id        Int      @id @default(autoincrement())
+  username  String   // 追加：誰が引いたかを記録
+  result    String
+  drawnAt   DateTime @default(now())
+}

@@ -1,0 +1,108 @@
+/* テーマごとの配色定義（背景色、テキスト色、カード等の部品の背景色） */
+body[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #212529;
+  --card-bg: #d2fde8;
+  --accent-color: #41d3c7;
+}
+
+body[data-theme="dark"] {
+  --bg-color: #06002e;
+  --text-color: #f8f9fa;
+  --card-bg: #4e4e4e;
+  --accent-color: #000000;
+}
+
+body[data-theme="spring"] {
+  --bg-color: #fae6e6;
+  --text-color: #ff7b91;
+  --card-bg: #f8ecca;
+  --accent-color: #fdcbe3;
+}
+
+body[data-theme="summer"] {
+  --bg-color: #99f2f2;
+  --text-color: #e4402b;
+  --card-bg: #e3f8fd;
+  --accent-color: #ffd34e;
+}
+
+body[data-theme="autumn"] {
+  --bg-color: #ffe8c5;
+  --text-color: #693c00;
+  --card-bg: #f8cfa8;
+  --accent-color: #bb6f77;
+}
+
+body[data-theme="winter"] {
+  --bg-color: #0081a1;
+  --text-color: #e6f6ff;
+  --card-bg: #7fcdcf;
+  --accent-color: #3a3a65;
+}
+
+/* 画面全体の適用 */
+body {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Bootstrapのコンポーネント（カード、モーダル）への適用 */
+body[data-theme] .card,
+body[data-theme] .modal-content,
+body[data-theme] .modal-header,
+body[data-theme] .modal-body {
+  background-color: var(--card-bg) !important;
+  color: var(--text-color) !important;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ナビゲーションバーの背景色もテーマに合わせる */
+body[data-theme] .theme-navbar {
+  background-color: var(--accent-color) !important;
+}
+
+/* ナビゲーションバーのタイトル文字色 */
+.navbar-brand.theme-nav-title {
+  color: var(--text-color);
+}
+
+/* ガチャ結果など、アクセントカラーにしたい文字 */
+/* アクセントだけど見づらかったからtext-colorを適用 随時変更可 */
+.theme-accent-text {
+  color: var(--text-color);
+}
+
+/* 補足説明など、少し控えめにしたい文字 */
+.theme-sub-text {
+  color: var(--text-color);
+  opacity: 0.7; 
+}
+
+/* 設定アイコンボタン */
+.theme-icon-btn {
+  border-color: var(--text-color);
+  color: var(--text-color);
+  background-color: transparent;
+}
+
+.theme-icon-btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+/* テーマ選択用の汎用ボタン */
+.theme-btn {
+  border: 1px solid var(--text-color);
+  color: var(--text-color);
+  background-color: var(--card-bg);
+  transition: all 0.2s ease;
+}
+
+.theme-btn:hover {
+  background-color: var(--accent-color);
+  border-color: var(--accent-color);
+  color: var(--text-color);
+}
